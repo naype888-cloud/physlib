@@ -14,3 +14,4 @@ public import PhyslibAlpha.AlgebraicFramework.CStarAlgebra.DimUncertainty.D12_Tr
 public import PhyslibAlpha.AlgebraicFramework.CStarAlgebra.DimUncertainty.D13_FirstBreak
 public import PhyslibAlpha.AlgebraicFramework.CStarAlgebra.DimUncertainty.D14_SzegoExcess
 public import PhyslibAlpha.AlgebraicFramework.CStarAlgebra.DimUncertainty.D15_Cosecant
+public import PhyslibAlpha.AlgebraicFramework.CStarAlgebra.DimUncertainty.D16_ClosedSurfaceTransport
