@@ -105,6 +105,7 @@ public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.Dynamics.Automorphism
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.Dynamics.Hamiltonian
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathAngleSums
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathExtremalState
+public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathModeInner
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathModeNorms
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathObservables
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathPeriodSums
