@@ -107,6 +107,7 @@ public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.NavaCoherenceLowDim
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.NavaCoherencePositivity
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.NavaCoherenceThreshold
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.NavaRobertsonDefect
+public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.NavaRobertsonSchrodinger
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathAngleSums
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathExtremalState
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathModeInner
