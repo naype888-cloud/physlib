@@ -105,6 +105,7 @@ public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.Dynamics.Automorphism
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.Dynamics.Hamiltonian
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathExtremalState
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathObservables
+public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathRootSums
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.Trace
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.TraceClass.Basic
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.TraceClass.HilbertSchmidt
