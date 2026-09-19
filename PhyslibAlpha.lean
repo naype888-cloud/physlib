@@ -103,6 +103,7 @@ public import PhyslibAlpha.AlgebraicFramework.WStarAlgebra.Basic
 public import PhyslibAlpha.AlgebraicFramework.WStarAlgebra.ConjSpace
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.Dynamics.Automorphism
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.Dynamics.Hamiltonian
+public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.NavaRobertsonDefect
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathAngleSums
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathExtremalState
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathModeInner
