@@ -104,6 +104,7 @@ public import PhyslibAlpha.AlgebraicFramework.WStarAlgebra.ConjSpace
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.Dynamics.Automorphism
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.Dynamics.Hamiltonian
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.NavaCoherenceLowDim
+public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.NavaCoherenceThreshold
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.NavaRobertsonDefect
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathAngleSums
 public import PhyslibAlpha.AlgebraicFramework.HilbertSpace.PathExtremalState
