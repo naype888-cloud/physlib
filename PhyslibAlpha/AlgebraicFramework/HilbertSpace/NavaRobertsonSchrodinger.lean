@@ -20,6 +20,8 @@ values of `C_Nava d ^ 2`, this shows that in this state the inequality
 * is an equality if and only if `d = 2` or `d = 3`,
 * is strict for every `d ≥ 4`.
 
+All three statements are about this single vector state; nothing is asserted about other states.
+
 ## Main results
 
 - `robertson_schrodinger_gap_extremal` : the gap is `(C_Nava d ^ 2 - 1) / (d - 1) ^ 2`.

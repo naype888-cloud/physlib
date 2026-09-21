@@ -21,7 +21,8 @@ open ContinuousLinearMap UnitalPositiveLinearMap
 
 namespace PathObservables
 
-/-- The closed form of `C_Nava (d) ^ 2`, with `N = d + 1` and `θ = π / N`. -/
+/-- `C_Nava (d) ^ 2`, defined by its closed form with `N = d + 1` and `θ = π / N`. That this is the
+quantity the operators produce is the content of `nava_robertson_defect` below. -/
 noncomputable def CNavaSq (d : ℕ) : ℝ :=
   2 * ((d : ℝ) - 1) / (((d : ℝ) + 1) * Real.cos (angle d) ^ 2) *
     ((((d : ℝ) + 1) ^ 2 + 2) / 6 * Real.sin (angle d) ^ 2 - 1)
