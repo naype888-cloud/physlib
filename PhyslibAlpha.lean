@@ -44,6 +44,7 @@ public import PhyslibAlpha.CondensedMatter.TightBindingChain.EntropyCurvature
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.HorizonCount
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.LinkPuncture
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.LongChainLimit
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.LongChainMonotonicity
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MandelstamTamm
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentVariances
