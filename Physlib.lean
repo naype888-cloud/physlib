@@ -56,6 +56,7 @@ public import Physlib.CondensedMatter.Topology.Basic
 public import Physlib.Cosmology.Basic
 public import Physlib.Cosmology.FLRW.Basic
 public import Physlib.Cosmology.FLRW.ConformalTime
+public import Physlib.Cosmology.FLRW.DeSitterHorizon
 public import Physlib.Cosmology.FLRW.DensityParameters
 public import Physlib.Cosmology.FLRW.Distances
 public import Physlib.Cosmology.FLRW.Dynamics
