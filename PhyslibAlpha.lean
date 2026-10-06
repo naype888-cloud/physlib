@@ -50,6 +50,7 @@ public import PhyslibAlpha.CondensedMatter.TightBindingChain.SpeedLimit
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Uncertainty
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.UncertaintyCone
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.VelocityBand
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.VolumetricQuantum
 public import PhyslibAlpha.Electromagnetism.BoxChargeConservation
 public import PhyslibAlpha.Electromagnetism.Distributional.WireJunction
 public import PhyslibAlpha.Mathematics.Analysis.Normed.HolderDual
