@@ -61,6 +61,7 @@ public import Physlib.Cosmology.FLRW.Distances
 public import Physlib.Cosmology.FLRW.Dynamics
 public import Physlib.Cosmology.FLRW.MatterContent
 public import Physlib.Cosmology.FLRW.Solutions
+public import Physlib.Cosmology.FLRW.VaryingVacuum
 public import Physlib.Electromagnetism.Basic
 public import Physlib.Electromagnetism.Charge.ChargeUnit
 public import Physlib.Electromagnetism.Current.CircularCoil

@@ -22,7 +22,9 @@ Overview: |
     factor and a spatial geometry. MatterContent.lean contains the continuity
     equation of the cosmic fluid and its relation to the two Friedmann equations,
     the barotropic equation of state with the density scaling laws, and the
-    cosmological constant as a fluid. Solutions.lean contains the exact de
+    cosmological constant as a fluid. VaryingVacuum.lean lets Λ depend on cosmic
+    time: the Friedmann equations of the cosmic fluid plus the vacuum give the
+    energy balance ∂ₜ ρ + 3 H (ρ + p / c²) = - (c² / (8 π G)) ∂ₜ Λ. Solutions.lean contains the exact de
     Sitter, radiation-dominated, Einstein-de Sitter, Milne and Einstein static
     solutions. Four further modules, ConformalTime.lean, DensityParameters.lean,
     Distances.lean and Dynamics.lean, contain only TODO items: conformal time and
