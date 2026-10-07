@@ -46,6 +46,7 @@ public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentVariances
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.OpenBoundary
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Saturation
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.SpacetimeFoam
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.SpeedLimit
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Uncertainty
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.UncertaintyCone
