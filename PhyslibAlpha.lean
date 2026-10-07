@@ -47,6 +47,7 @@ public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentVariances
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.OpenBoundary
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Saturation
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.SpeedLimit
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.TimeDilation
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Uncertainty
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.UncertaintyCone
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.VelocityBand
