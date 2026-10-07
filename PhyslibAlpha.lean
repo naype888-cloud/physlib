@@ -37,6 +37,7 @@ public import PhyslibAlpha.CondensedMatter.TightBindingChain.Cube
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Current
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.CurrentEigenstates
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.CutBonds
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.CutCycles
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.ElementalUncertainty
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.HorizonCount
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.LinkPuncture
