@@ -39,6 +39,7 @@ public import PhyslibAlpha.CondensedMatter.TightBindingChain.CurrentEigenstates
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.CutBonds
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.CutCycles
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.ElementalUncertainty
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.EntropyCurvature
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.HorizonCount
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.LinkPuncture
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.LongChainLimit
