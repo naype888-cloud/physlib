@@ -313,4 +313,5 @@ public import PhyslibAlpha.SpaceAndTime.Space.Surfaces.SolidSphere
 public import PhyslibAlpha.SpaceAndTime.Space.Surfaces.SphericalCylinder
 public import PhyslibAlpha.SpaceAndTime.Space.Surfaces.SphericalShell
 public import PhyslibAlpha.StatisticalMechanics.Carnot
+public import PhyslibAlpha.StatisticalMechanics.Equilibrium
 public import PhyslibAlpha.StatisticalMechanics.Landauer
