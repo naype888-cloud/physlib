@@ -39,6 +39,7 @@ public import PhyslibAlpha.CondensedMatter.TightBindingChain.CurrentEigenstates
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.CutBonds
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.DefectHeat
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.ElementalUncertainty
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.LightCone
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.LongChainLimit
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.LongChainMonotonicity
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MandelstamTamm
