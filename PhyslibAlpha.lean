@@ -291,6 +291,7 @@ public import PhyslibAlpha.ProbabilisticTheory.WStarAlgebra.TracePairingSurjecti
 public import PhyslibAlpha.ProbabilisticTheory.Weight.Basic
 public import PhyslibAlpha.ProbabilisticTheory.Weight.Continuous
 public import PhyslibAlpha.ProbabilisticTheory.Weight.Extension
+public import PhyslibAlpha.QuantumGravity.LoopQuantumGravity.AreaSpectrum
 public import PhyslibAlpha.QuantumMechanics.HarmonicOscillator.LadderSystem
 public import PhyslibAlpha.QuantumMechanics.HarmonicOscillator.Vacuum
 public import PhyslibAlpha.QuantumMechanics.HilbertSpaces.FiniteTarget.Operators
