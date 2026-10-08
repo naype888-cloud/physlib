@@ -154,6 +154,7 @@ public import Physlib.Mathematics.LeviCivita.Basic
 public import Physlib.Mathematics.Modules.ConjModule
 public import Physlib.Mathematics.Modules.CrossProduct
 public import Physlib.Mathematics.Modules.CrossProductMatrix
+public import Physlib.Mathematics.SpecialFunctions.Chebyshev.CosecantSquares
 public import Physlib.Mathematics.SpecialFunctions.Chebyshev.RootSums
 public import Physlib.Mathematics.SpecialFunctions.EllipticIntegral
 public import Physlib.Mathematics.SpecialFunctions.PhysHermite
