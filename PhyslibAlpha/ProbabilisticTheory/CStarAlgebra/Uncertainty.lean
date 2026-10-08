@@ -39,6 +39,8 @@ for several observables, `|det Ω| ≤ det Σ`.
 - `Matrix.PosDef.norm_det_le_re_det` : `‖det B‖ ≤ det A` when `A ± B` are positive semidefinite.
 - `UnitalPositiveLinearMap.robertson_det` : **Robertson's uncertainty relation for several
   observables**, `|det Ω| ≤ det Σ`.
+- `UnitalPositiveLinearMap.robertsonSchrodingerRatio_affineObservable` : units and origins do
+  not change the Robertson–Schrödinger ratio `σ_a σ_b / ‖ω(δa δb)‖`.
 
 ## iii. Table of contents
 
@@ -48,6 +50,7 @@ for several observables, `|det Ω| ≤ det Σ`.
 - D. Normalized variance bounds
 - E. A determinant bound for positive matrices
 - F. Several observables
+- G. Units and origins
 
 ## iv. References
 
@@ -461,6 +464,94 @@ theorem robertson_det [Fintype ι] [DecidableEq ι] (ω : 𝓢[ℂ, A]) (a : ι 
   exact abs_det_le_det_of_posSemidef
     (by rw [← transpose_gram_centeredGNSVector]; exact hG.transpose)
     (by rw [← gram_centeredGNSVector]; exact hG)
+
+end UnitalPositiveLinearMap
+
+end ProbabilisticTheory
+
+/-! ## G. Units and origins -/
+
+namespace ProbabilisticTheory
+
+open scoped ComplexOrder selfAdjoint
+
+variable {A : Type*} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+
+namespace UnitalPositiveLinearMap
+
+/-- The observable `α a + β`: `a` in units `α` with origin `β`. -/
+noncomputable def affineObservable (α β : ℝ) (a : Observable A) : Observable A := α • a + β • 1
+
+variable (ω : 𝓢[ℂ, A]) (a b : Observable A) (α β γ ε : ℝ)
+
+lemma covariance_smul_left : covariance ω (α • a) b = α * covariance ω a b := by
+  change LinearMap.covarianceForm (expectation ω).toLinearMap (α • a) b = _
+  rw [map_smul, LinearMap.smul_apply, smul_eq_mul]
+  rfl
+
+lemma covariance_smul_right : covariance ω a (γ • b) = γ * covariance ω a b := by
+  rw [covariance_comm, covariance_smul_left, covariance_comm]
+
+/-- The covariance of `α a + β` and `γ b + ε` is `α γ cov(a, b)`. -/
+lemma covariance_affineObservable :
+    covariance ω (affineObservable α β a) (affineObservable γ ε b) = α * γ * covariance ω a b := by
+  rw [affineObservable, affineObservable, covariance_add_smul_one_left,
+    covariance_add_smul_one_right, covariance_smul_left, covariance_smul_right]
+  ring
+
+/-- The variance of `α a + β` is `α² Var a`. -/
+lemma variance_affineObservable :
+    variance ω (affineObservable α β a) = α ^ 2 * variance ω a := by
+  rw [← covariance_self, covariance_affineObservable, ← covariance_self, sq]
+
+/-- The bracket of `α a + β` and `γ b + ε` has expectation `α γ ω⟨⁅a, b⁆⟩`. -/
+lemma expectation_bracket_affineObservable :
+    ω⟨⁅affineObservable α β a, affineObservable γ ε b⁆⟩ = α * γ * ω⟨⁅a, b⁆⟩ := by
+  have hl (t c : ℝ) (x y : Observable A) : ⁅t • x + c • 1, y⁆ = t • ⁅x, y⁆ := by
+    have h₁ : ⁅t • x, y⁆ = t • ⁅x, y⁆ := by
+      rw [← lie_skew, selfAdjoint.bracket_smul, ← smul_neg, lie_skew]
+    have h₂ : ⁅c • (1 : Observable A), y⁆ = 0 := by
+      rw [← lie_skew, selfAdjoint.bracket_smul, selfAdjoint.bracket_one_right, smul_zero, neg_zero]
+    rw [add_lie, h₁, h₂, add_zero]
+  have hr (t c : ℝ) (x y : Observable A) : ⁅x, t • y + c • 1⁆ = t • ⁅x, y⁆ := by
+    rw [← lie_skew, hl, ← smul_neg, lie_skew]
+  rw [affineObservable, affineObservable, hl, hr, map_smul, map_smul, smul_eq_mul, smul_eq_mul]
+  ring
+
+/-- The centered Gram defect of `α a + β` and `γ b + ε` is `(α γ)²` times that of `a` and `b`. -/
+lemma centeredGramDefect_affineObservable :
+    centeredGramDefect ω (affineObservable α β a) (affineObservable γ ε b) =
+      (α * γ) ^ 2 * centeredGramDefect ω a b := by
+  have h := robertson_gap_decomposition ω (affineObservable α β a) (affineObservable γ ε b)
+  have h₀ := robertson_gap_decomposition ω a b
+  rw [variance_affineObservable, variance_affineObservable,
+    expectation_bracket_affineObservable, covariance_affineObservable] at h
+  linear_combination -h + (α * γ) ^ 2 * h₀
+
+/-- The Robertson–Schrödinger ratio `σ_a σ_b / ‖ω(δa δb)‖`, equal to one exactly when the
+Robertson–Schrödinger relation is an equality. -/
+noncomputable def robertsonSchrodingerRatio : ℝ :=
+  √(variance ω a * variance ω b) / ‖ω ((centered ω a : A) * centered ω b)‖
+
+/-- The ratio through the variances and the centered Gram defect. -/
+lemma robertsonSchrodingerRatio_eq :
+    robertsonSchrodingerRatio ω a b =
+      √(variance ω a * variance ω b) /
+        √(variance ω a * variance ω b - centeredGramDefect ω a b) := by
+  rw [robertsonSchrodingerRatio, centeredGramDefect, sub_sub_cancel, ← Complex.sq_norm,
+    Real.sqrt_sq (norm_nonneg _)]
+
+/-- **Units and origins do not change the Robertson–Schrödinger ratio.** -/
+lemma robertsonSchrodingerRatio_affineObservable {α γ : ℝ} (hα : α ≠ 0) (hγ : γ ≠ 0) :
+    robertsonSchrodingerRatio ω (affineObservable α β a) (affineObservable γ ε b) =
+      robertsonSchrodingerRatio ω a b := by
+  have hαγ : 0 < (α * γ) ^ 2 := by positivity
+  rw [robertsonSchrodingerRatio_eq, robertsonSchrodingerRatio_eq, variance_affineObservable,
+    variance_affineObservable, centeredGramDefect_affineObservable,
+    show α ^ 2 * variance ω a * (γ ^ 2 * variance ω b) =
+      (α * γ) ^ 2 * (variance ω a * variance ω b) by ring, ← mul_sub,
+    Real.sqrt_mul hαγ.le, Real.sqrt_mul hαγ.le]
+  exact mul_div_mul_left _ _ (Real.sqrt_pos.mpr hαγ).ne'
 
 end UnitalPositiveLinearMap
 
