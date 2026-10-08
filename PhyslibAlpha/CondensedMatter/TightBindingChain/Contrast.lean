@@ -17,9 +17,9 @@ it inside the causal cone, so nothing moves faster than light.
 
 In the maximal current state of the open tight binding chain the proper time quantum, the proper
 time in units of the bracket, is the tangent of the NRS angle: the ratio of the proper time
-`σ_H σ_X sin θ` to the pairing `σ_H σ_X cos θ`. It lies strictly between two saturations. It is
-zero for `N = 2, 3`, where the uncertainty vector is lightlike, and from four sites on it stays
-strictly below its long chain limit `√(π² / 3 - 3)`, which no chain reaches.
+`σ_H σ_X sin θ` to the pairing `σ_H σ_X cos θ`. It is zero for `N = 2, 3`, where the
+uncertainty vector is lightlike, and from four sites on it is positive and stays strictly below
+its long chain limit `√(π² / 3 - 3)`, which no chain reaches.
 
 `C_Nava`, the NRS angle and the proper time quantum depend on the number of sites alone. Two
 chains with the same number of sites have the same values, whatever their lattice spacing `a` and
@@ -94,8 +94,8 @@ theorem properTimeQuantum_eq_tan_angleNRS (ht : T.t ≠ 0) (hN : 2 ≤ T.N) :
   field_simp
   ring
 
-/-- **Between the two saturations.** From four sites on the proper time quantum lies strictly
-between `0` and its long chain limit `√(π² / 3 - 3)`. -/
+/-- From four sites on the proper time quantum lies strictly between `0` and its long chain limit
+`√(π² / 3 - 3)`. -/
 theorem properTimeQuantum_mem_Ioo (ht : T.t ≠ 0) (hN : 4 ≤ T.N) :
     T.properTimeQuantum ∈ Set.Ioo 0 √(Real.pi ^ 2 / 3 - 3) :=
   ⟨T.properTimeQuantum_pos ht hN, T.properTime_maxCurrentState_div_lt_sqrt ht hN⟩
