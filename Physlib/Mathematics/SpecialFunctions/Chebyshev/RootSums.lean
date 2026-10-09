@@ -41,7 +41,10 @@ there, it gives the sums of `1 / (1 - z)` and `1 / (1 + z)`, and from
 
 ## iv. References
 
-* A. L. Cauchy, *Cours d'analyse de l'École royale polytechnique* (1821).
+* A.-L. Cauchy, *Cours d'analyse de l'École royale polytechnique* (1821), Note VIII;
+  English translation: R. E. Bradley, C. E. Sandifer, *Cauchy's Cours d'analyse:
+  An Annotated Translation*, Springer (2010).
+* <https://math.stackexchange.com/questions/1935407>: the sum of `1 / (1 - cos (k π / N))`.
 
 -/
 

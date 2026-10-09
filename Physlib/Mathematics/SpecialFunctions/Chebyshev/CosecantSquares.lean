@@ -34,8 +34,10 @@ evaluation of `∑ 1 / k² = π² / 6`.
 
 ## iv. References
 
-* A. L. Cauchy, *Cours d'analyse de l'École royale polytechnique* (1821).
-* M. Aigner, G. M. Ziegler, *Proofs from THE BOOK*, Springer, chapter on `π² / 6`.
+* A.-L. Cauchy, *Cours d'analyse de l'École royale polytechnique* (1821), Note VIII;
+  English translation: R. E. Bradley, C. E. Sandifer, *Cauchy's Cours d'analyse:
+  An Annotated Translation*, Springer (2010).
+* <https://en.wikipedia.org/wiki/Basel_problem>, section "Cauchy's proof".
 
 -/
 
