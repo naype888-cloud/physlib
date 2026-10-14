@@ -78,6 +78,7 @@ public import PhyslibAlpha.CondensedMatter.TightBindingChain.Current.SpeedLimit
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Current.TimeReversal
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.Basic
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.FluctuationAngle
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.FluctuationAngleBound
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.LongChainLimit
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.LongChainMonotonicity
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.MandelstamTamm
