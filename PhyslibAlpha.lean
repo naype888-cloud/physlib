@@ -226,6 +226,7 @@ public import PhyslibAlpha.ProbabilisticTheory.Examples.Square
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.Dynamics.Automorphism
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.Dynamics.Hamiltonian
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.JointSpectral.Basic
+public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.State.Antiunitary
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.State.Density
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.State.DensityUncertainty
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.State.Vector
