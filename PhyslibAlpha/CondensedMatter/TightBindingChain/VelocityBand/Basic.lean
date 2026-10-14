@@ -9,7 +9,7 @@ public import PhyslibAlpha.CondensedMatter.TightBindingChain.Current.SpeedLimit
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.Saturation
 /-!
 
-# The velocity band of forced uncertainty
+# The velocity band of strict uncertainty
 
 ## i. Overview
 
@@ -27,7 +27,7 @@ so the band is empty.
 - `threshold` : the largest speed `|⟨J⟩|` of a vector of minimum uncertainty, attained by
   `exists_threshold`.
 - `velocityBand` : the band `(threshold, maxCurrent]`.
-- `defectOf_pos_of_mem_velocityBand` : in the band, the defect is forced.
+- `defectOf_pos_of_mem_velocityBand` : in the band, the defect is positive.
 - `velocityBand_eq_empty` : for `N = 2, 3` the band is empty.
 
 ## iii. Table of contents
@@ -149,10 +149,10 @@ lemma threshold_le_maxCurrent (ht : T.t ≠ 0) : T.threshold ≤ T.maxCurrent :=
 
 -/
 
-/-- The velocity band `(threshold, maxCurrent]` of forced uncertainty. -/
+/-- The velocity band `(threshold, maxCurrent]` of strict uncertainty. -/
 def velocityBand : Set ℝ := Set.Ioc T.threshold T.maxCurrent
 
-/-- In the velocity band, the uncertainty defect is forced. -/
+/-- In the velocity band, the uncertainty defect is positive. -/
 lemma defectOf_pos_of_mem_velocityBand {ψ : T.HilbertSpace} (hψ : ‖ψ‖ = 1)
     (hv : |T.meanOf T.current ψ| ∈ T.velocityBand) : 0 < T.defectOf ψ :=
   (T.defectOf_nonneg ψ).lt_of_ne fun h =>

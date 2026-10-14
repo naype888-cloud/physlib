@@ -18,7 +18,7 @@ pairing `ω(δH δX)` reduces to the bracket term `a t cos (π / (N + 1))`. Its 
 `σ_H σ_X` is the cosine of the angle between the two fluctuations: the fluctuation angle, with
 `cos θ = 1 / C`. It vanishes exactly for `N = 2, 3`, opens from four sites on, grows
 strictly with `N` and stays below `arccos (1 / √(π² / 3 - 2))`. The excess `δ = C - 1` is the
-dimensional quantum of the chain, and it fixes the angle.
+uncertainty excess of the chain, and it fixes the angle.
 
 ## ii. Key results
 
@@ -28,13 +28,13 @@ dimensional quantum of the chain, and it fixes the angle.
   from `N = 4`.
 - `fluctuationAngle_lt_fluctuationAngle`, `fluctuationAngle_lt` : it grows strictly with `N`, below
   its limit.
-- `dimQuantum` : the dimensional quantum `δ = C - 1`.
-- `fluctuationAngle_eq_dimQuantum` : `θ = arccos (1 / (1 + δ))`.
+- `uncertaintyExcess` : the uncertainty excess `δ = C - 1`.
+- `fluctuationAngle_eq_uncertaintyExcess` : `θ = arccos (1 / (1 + δ))`.
 
 ## iii. Table of contents
 
 - A. The fluctuation angle
-- B. The dimensional quantum
+- B. The uncertainty excess
 
 ## iv. References
 
@@ -113,39 +113,40 @@ lemma fluctuationAngle_lt (ht : T.t ≠ 0) (hN : 4 ≤ T.N) :
 
 /-!
 
-## B. The dimensional quantum
+## B. The uncertainty excess
 
 -/
 
-/-- The dimensional quantum of the chain: the excess `C - 1` over saturation. -/
-noncomputable def dimQuantum : ℝ := T.uncertaintyRatio - 1
+/-- The uncertainty excess of the chain: the excess `C - 1` over saturation. -/
+noncomputable def uncertaintyExcess : ℝ := T.uncertaintyRatio - 1
 
-lemma dimQuantum_nonneg (ht : T.t ≠ 0) (hN : 2 ≤ T.N) : 0 ≤ T.dimQuantum :=
+lemma uncertaintyExcess_nonneg (ht : T.t ≠ 0) (hN : 2 ≤ T.N) : 0 ≤ T.uncertaintyExcess :=
   sub_nonneg.mpr (T.one_le_uncertaintyRatio ht hN)
 
-/-- The dimensional quantum vanishes exactly for `N = 2` and `N = 3`. -/
-lemma dimQuantum_eq_zero_iff (ht : T.t ≠ 0) (hN : 2 ≤ T.N) :
-    T.dimQuantum = 0 ↔ T.N = 2 ∨ T.N = 3 := by
-  rw [dimQuantum, sub_eq_zero, T.uncertaintyRatio_eq_one_iff ht hN]
+/-- The uncertainty excess vanishes exactly for `N = 2` and `N = 3`. -/
+lemma uncertaintyExcess_eq_zero_iff (ht : T.t ≠ 0) (hN : 2 ≤ T.N) :
+    T.uncertaintyExcess = 0 ↔ T.N = 2 ∨ T.N = 3 := by
+  rw [uncertaintyExcess, sub_eq_zero, T.uncertaintyRatio_eq_one_iff ht hN]
 
-/-- From four sites on, the dimensional quantum is positive. -/
-lemma dimQuantum_pos (ht : T.t ≠ 0) (hN : 4 ≤ T.N) : 0 < T.dimQuantum :=
+/-- From four sites on, the uncertainty excess is positive. -/
+lemma uncertaintyExcess_pos (ht : T.t ≠ 0) (hN : 4 ≤ T.N) : 0 < T.uncertaintyExcess :=
   sub_pos.mpr (T.one_lt_uncertaintyRatio ht hN)
 
-/-- From four sites on, the dimensional quantum grows strictly with the number of sites. -/
-lemma dimQuantum_lt_dimQuantum {T T' : TightBindingChain} (ht : T.t ≠ 0) (ht' : T'.t ≠ 0)
-    (hN : 4 ≤ T.N) (hNN' : T.N < T'.N) : T.dimQuantum < T'.dimQuantum :=
+/-- From four sites on, the uncertainty excess grows strictly with the number of sites. -/
+lemma uncertaintyExcess_lt_uncertaintyExcess {T T' : TightBindingChain} (ht : T.t ≠ 0)
+    (ht' : T'.t ≠ 0) (hN : 4 ≤ T.N) (hNN' : T.N < T'.N) :
+    T.uncertaintyExcess < T'.uncertaintyExcess :=
   sub_lt_sub_right (uncertaintyRatio_lt_uncertaintyRatio ht ht' hN hNN') 1
 
-/-- From four sites on, the dimensional quantum stays below `√(π² / 3 - 2) - 1`. -/
-lemma dimQuantum_lt (ht : T.t ≠ 0) (hN : 4 ≤ T.N) :
-    T.dimQuantum < √(Real.pi ^ 2 / 3 - 2) - 1 :=
+/-- From four sites on, the uncertainty excess stays below `√(π² / 3 - 2) - 1`. -/
+lemma uncertaintyExcess_lt (ht : T.t ≠ 0) (hN : 4 ≤ T.N) :
+    T.uncertaintyExcess < √(Real.pi ^ 2 / 3 - 2) - 1 :=
   sub_lt_sub_right (T.uncertaintyRatio_lt_sqrt_pi_sq_div_three_sub_two ht hN) 1
 
-/-- The dimensional quantum fixes the fluctuation angle: `θ = arccos (1 / (1 + δ))`. -/
-lemma fluctuationAngle_eq_dimQuantum (ht : T.t ≠ 0) (hN : 2 ≤ T.N) :
-    T.fluctuationAngle = Real.arccos (1 / (1 + T.dimQuantum)) := by
-  rw [T.fluctuationAngle_eq ht hN, dimQuantum, add_sub_cancel]
+/-- The uncertainty excess fixes the fluctuation angle: `θ = arccos (1 / (1 + δ))`. -/
+lemma fluctuationAngle_eq_uncertaintyExcess (ht : T.t ≠ 0) (hN : 2 ≤ T.N) :
+    T.fluctuationAngle = Real.arccos (1 / (1 + T.uncertaintyExcess)) := by
+  rw [T.fluctuationAngle_eq ht hN, uncertaintyExcess, add_sub_cancel]
 
 end TightBindingChain
 end CondensedMatter

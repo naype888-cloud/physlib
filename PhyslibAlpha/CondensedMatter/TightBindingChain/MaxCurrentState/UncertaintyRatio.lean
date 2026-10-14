@@ -8,7 +8,7 @@ module
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.Saturation
 /-!
 
-# The elemental uncertainty of the open tight binding chain
+# The uncertainty ratio of the open tight binding chain
 
 ## i. Overview
 
