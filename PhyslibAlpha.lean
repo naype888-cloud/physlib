@@ -228,6 +228,7 @@ public import PhyslibAlpha.ProbabilisticTheory.Examples.NormCone
 public import PhyslibAlpha.ProbabilisticTheory.Examples.Qubit
 public import PhyslibAlpha.ProbabilisticTheory.Examples.Square
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.Dynamics.Automorphism
+public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.Dynamics.Ehrenfest
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.Dynamics.Hamiltonian
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.JointSpectral.Basic
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.State.Antiunitary
