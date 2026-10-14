@@ -49,6 +49,7 @@ public import PhyslibAlpha.CondensedMatter.Crystal.Examples.ThreeDimensional
 public import PhyslibAlpha.CondensedMatter.Crystal.Folner
 public import PhyslibAlpha.CondensedMatter.Crystal.Geometry
 public import PhyslibAlpha.CondensedMatter.Crystal.Graph
+public import PhyslibAlpha.CondensedMatter.Crystal.GroupVelocity
 public import PhyslibAlpha.CondensedMatter.Crystal.InvariantState
 public import PhyslibAlpha.CondensedMatter.Crystal.InvariantStateUncertainty
 public import PhyslibAlpha.CondensedMatter.Crystal.Inversion
