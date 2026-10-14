@@ -81,6 +81,7 @@ public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.Flu
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.LongChainLimit
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.LongChainMonotonicity
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.MandelstamTamm
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.ParticleHole
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.Saturation
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.UncertaintyRatio
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.Variances
