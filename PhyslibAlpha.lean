@@ -46,6 +46,7 @@ public import PhyslibAlpha.CondensedMatter.Crystal.Brillouin
 public import PhyslibAlpha.CondensedMatter.Crystal.BrillouinCoordinates
 public import PhyslibAlpha.CondensedMatter.Crystal.Examples.Basic
 public import PhyslibAlpha.CondensedMatter.Crystal.Examples.ThreeDimensional
+public import PhyslibAlpha.CondensedMatter.Crystal.Examples.TetragonalHexagonal
 public import PhyslibAlpha.CondensedMatter.Crystal.Folner
 public import PhyslibAlpha.CondensedMatter.Crystal.Geometry
 public import PhyslibAlpha.CondensedMatter.Crystal.Graph
