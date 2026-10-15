@@ -55,6 +55,7 @@ public import PhyslibAlpha.CondensedMatter.Crystal.GroupVelocity
 public import PhyslibAlpha.CondensedMatter.Crystal.InvariantState
 public import PhyslibAlpha.CondensedMatter.Crystal.InvariantStateUncertainty
 public import PhyslibAlpha.CondensedMatter.Crystal.Inversion
+public import PhyslibAlpha.CondensedMatter.Crystal.LittleGroup
 public import PhyslibAlpha.CondensedMatter.Crystal.ManyBody
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Basic
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Count
@@ -232,6 +233,7 @@ public import PhyslibAlpha.ProbabilisticTheory.Examples.NormCone
 public import PhyslibAlpha.ProbabilisticTheory.Examples.Qubit
 public import PhyslibAlpha.ProbabilisticTheory.Examples.Square
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.Dynamics.Automorphism
+public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.Dynamics.Ehrenfest
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.Dynamics.Hamiltonian
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.JointSpectral.Basic
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.State.Antiunitary
