@@ -33,6 +33,9 @@ time reversal removes `Ω` within each parity and `Σ` between them.
   symmetric state have covariance zero.
 - `UnitalPositiveLinearMap.expectation_bracket_eq_zero_of_symm` : and their bracket has
   expectation zero.
+- `UnitalPositiveLinearMap.covariance_eq_of_symm`,
+  `UnitalPositiveLinearMap.expectation_bracket_eq_of_symm` : a symmetry of the state preserves
+  `Σ` and `Ω`.
 - `UnitalPositiveLinearMap.covariance_eq_zero_of_reverse` : under time reversal, an even and an
   odd observable have covariance zero.
 - `UnitalPositiveLinearMap.covariance_eq_zero_of_reverse_sub` : the same when the odd
@@ -123,6 +126,37 @@ lemma expectation_bracket_eq_zero_of_symm : ω⟨⁅a, b⁆⟩ = 0 :=
     Complex.zero_im])
 
 end Symm
+
+section Invariance
+
+variable (σ : A ≃⋆ₐ[ℂ] A) (hω : ∀ x, ω (σ x) = ω x) {a' b' : Observable A} (ha : σ a = a')
+  (hb : σ b = b')
+include hω ha hb
+
+/-- **A symmetry of the state preserves covariances**: `Σ_{σa, σb} = Σ_{ab}`. -/
+lemma covariance_eq_of_symm : covariance ω a' b' = covariance ω a b := by
+  have hc : ∀ {x y : Observable A}, σ x = y → (centered ω y : A) = σ (centered ω x) := by
+    intro x y h
+    have he : (ω⟨y⟩ : ℂ) = ω⟨x⟩ := by
+      rw [← apply_observable_eq_expectation, ← apply_observable_eq_expectation, ← h, hω]
+    have hcx : ∀ z : Observable A, (centered ω z : A) = (z : A) - (ω⟨z⟩ : ℂ) • 1 := by
+      intro z
+      simp only [centered, LinearMap.centered]
+      simp [Complex.coe_smul]
+      rfl
+    rw [hcx, hcx, map_sub, map_smul, map_one, h, he]
+  rw [covariance_eq_re_apply_centered_mul, covariance_eq_re_apply_centered_mul, hc ha, hc hb,
+    ← map_mul, hω]
+
+/-- **A symmetry of the state preserves the expectations of brackets**: `Ω_{σa, σb} = Ω_{ab}`. -/
+lemma expectation_bracket_eq_of_symm : ω⟨⁅a', b'⁆⟩ = ω⟨⁅a, b⁆⟩ := by
+  have h : (ω⟨⁅a', b'⁆⟩ : ℂ) = ω⟨⁅a, b⁆⟩ := by
+    rw [← apply_observable_eq_expectation, ← apply_observable_eq_expectation,
+      selfAdjoint.coe_bracket, selfAdjoint.coe_bracket, ← ha, ← hb, ← map_mul, ← map_mul,
+      ← map_sub, ← map_smul, hω]
+  exact_mod_cast h
+
+end Invariance
 
 /-! ## B. Time reversal -/
 
