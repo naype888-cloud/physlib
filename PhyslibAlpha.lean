@@ -53,6 +53,7 @@ public import PhyslibAlpha.CondensedMatter.Crystal.GroupVelocity
 public import PhyslibAlpha.CondensedMatter.Crystal.InvariantState
 public import PhyslibAlpha.CondensedMatter.Crystal.InvariantStateUncertainty
 public import PhyslibAlpha.CondensedMatter.Crystal.Inversion
+public import PhyslibAlpha.CondensedMatter.Crystal.LittleGroup
 public import PhyslibAlpha.CondensedMatter.Crystal.ManyBody
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Basic
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Count
