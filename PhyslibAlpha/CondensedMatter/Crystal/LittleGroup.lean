@@ -38,11 +38,20 @@ Brillouin zone, so there `Ω_HX = 0`, while at a generic momentum `Ω_HX ≠ 0`.
   reversed observable are uncorrelated.
 - `pointUnitary` : the unitary of a linear symmetry of a region.
 - `pointUnitary_hopping`, `pointUnitary_position` : `U H U⋆ = H` and `U X U⋆ = c X`.
+- `pointUnitary_characterWave` : the little group of `χ` fixes the plane wave of momentum `χ`.
+- `covariance_hopping_position_littleGroup`,
+  `expectation_bracket_hopping_position_littleGroup` : `Σ_HX = Ω_HX = 0` in the plane wave of
+  `χ` for every direction reversed by the little group of `χ`.
+- `covariance_position_position_littleGroup` : a direction fixed and one reversed by the little
+  group are uncorrelated.
+- `expectation_bracket_hopping_position_of_neg` : at a momentum with `χ(-n) = χ(n)` the bracket
+  vanishes along every direction.
 
 ## iii. Table of contents
 
 - A. Unitary symmetries of vector states
 - B. The unitary of a linear symmetry of a region
+- C. The little group of a plane wave
 
 ## iv. References
 
@@ -172,5 +181,130 @@ lemma pointUnitary_position (r : G →+ ℝ) (c : ℝ) (hr : ∀ n, r n = c * r 
       Matrix.diagonal_apply_ne _ ((regionPerm hΛ).injective.ne hnm), mul_zero]
 
 end Region
+
+/-! ## C. The little group of a plane wave -/
+
+variable (g : PeriodicGraph (Crystal.ofUnitCell G Unit))
+
+namespace PeriodicGraph
+
+omit [DecidableEq G] in
+/-- The linear part of a symmetry of a lattice with one site per cell preserves the bonds. -/
+lemma adj_linear {s : CellSymmetry G Unit} (hs : s ∈ g.symmetries) (n m : G) :
+    g.toSimpleGraph.Adj ⟨s.linear n, ()⟩ ⟨s.linear m, ()⟩ ↔
+      g.toSimpleGraph.Adj ⟨n, ()⟩ ⟨m, ()⟩ := by
+  have h := (mem_symmetries_iff g s).1 hs () () (m - n)
+  rw [add_sub_cancel_right, s.linear.map_sub] at h
+  rw [adj_iff_bonded, adj_iff_bonded]
+  exact h.symm
+
+end PeriodicGraph
+
+variable [TopologicalSpace G] [DiscreteTopology G]
+
+/-- The plane wave of momentum `χ` on a finite region. -/
+noncomputable def characterWave (Λ : Finset G) (χ : BrillouinZone G) : EuclideanSpace ℂ Λ :=
+  WithLp.toLp 2 fun n => (χ (Multiplicative.ofAdd (n : G)) : ℂ)
+
+omit [DecidableEq G] [DiscreteTopology G] in
+lemma norm_characterWave (Λ : Finset G) (χ : BrillouinZone G) :
+    ‖characterWave Λ χ‖ = √(Λ.card : ℝ) := by
+  rw [EuclideanSpace.norm_eq]
+  congr 1
+  simp [characterWave]
+
+/-- The plane wave of momentum `χ`, normalized on a nonempty region. -/
+noncomputable def unitCharacterWave (Λ : Finset G) (χ : BrillouinZone G) : EuclideanSpace ℂ Λ :=
+  ((√(Λ.card : ℝ))⁻¹ : ℝ) • characterWave Λ χ
+
+omit [DecidableEq G] [DiscreteTopology G] in
+lemma norm_unitCharacterWave (hne : Λ.Nonempty) (χ : BrillouinZone G) :
+    ‖unitCharacterWave Λ χ‖ = 1 := by
+  rw [unitCharacterWave, norm_smul, norm_characterWave, Real.norm_eq_abs,
+    abs_of_nonneg (inv_nonneg.mpr (Real.sqrt_nonneg _))]
+  exact inv_mul_cancel₀ (Real.sqrt_ne_zero'.mpr (by exact_mod_cast hne.card_pos))
+
+section LittleGroup
+
+variable {g} {s : g.symmetries} {χ : BrillouinZone G} (hs : s ∈ g.littleGroup χ)
+  (hΛ : ∀ n, (s : CellSymmetry G Unit).linear n ∈ Λ ↔ n ∈ Λ)
+include hs
+
+omit [DecidableEq G] in
+/-- **The little group of `χ` fixes the plane wave of momentum `χ`.** -/
+lemma pointUnitary_characterWave : pointUnitary hΛ (characterWave Λ χ) = characterWave Λ χ := by
+  ext n
+  rw [pointUnitary_apply]
+  exact congrArg (fun φ : BrillouinZone G => (φ (Multiplicative.ofAdd (n : G)) : ℂ))
+    ((g.mem_littleGroup χ s).1 hs)
+
+omit [DecidableEq G] in
+lemma pointUnitary_unitCharacterWave :
+    pointUnitary hΛ (unitCharacterWave Λ χ) = unitCharacterWave Λ χ := by
+  rw [unitCharacterWave, ← Complex.coe_smul, map_smul, pointUnitary_characterWave hs]
+
+variable (hne : Λ.Nonempty) (t : ℝ) {r : G →+ ℝ}
+  (hr : ∀ n, r ((s : CellSymmetry G Unit).linear n) = -r n)
+include hΛ hr
+
+omit hs [TopologicalSpace G] [DiscreteTopology G] in
+lemma pointUnitary_position_neg :
+    (pointUnitary hΛ).conjStarAlgEquiv (positionObservable (Λ := Λ) r) =
+      -(positionObservable (Λ := Λ) r : EuclideanSpace ℂ Λ →L[ℂ] _) := by
+  rw [pointUnitary_position hΛ r (-1) fun n => by rw [hr]; ring, Complex.ofReal_neg,
+    Complex.ofReal_one, neg_one_smul]
+
+/-- **In the plane wave of momentum `χ`, the energy and the position along every direction
+reversed by the little group of `χ` are uncorrelated.** -/
+lemma covariance_hopping_position_littleGroup :
+    UnitalPositiveLinearMap.covariance
+      (UnitalPositiveLinearMap.ofVec (norm_unitCharacterWave hne χ))
+      (hoppingObservable g t) (positionObservable r) = 0 :=
+  covariance_ofVec_eq_zero_of_unitary (pointUnitary hΛ) _ (pointUnitary_unitCharacterWave hs hΛ)
+    (pointUnitary_hopping hΛ g (g.adj_linear s.2) t) (pointUnitary_position_neg hΛ hr)
+
+/-- **In the plane wave of momentum `χ`, the bracket of the energy and the position along every
+direction reversed by the little group of `χ` has expectation zero.** -/
+lemma expectation_bracket_hopping_position_littleGroup :
+    UnitalPositiveLinearMap.expectation
+      (UnitalPositiveLinearMap.ofVec (norm_unitCharacterWave hne χ))
+      ⁅hoppingObservable (Λ := Λ) g t, positionObservable r⁆ = 0 :=
+  expectation_bracket_ofVec_eq_zero_of_unitary (pointUnitary hΛ) _
+    (pointUnitary_unitCharacterWave hs hΛ) (pointUnitary_hopping hΛ g (g.adj_linear s.2) t)
+    (pointUnitary_position_neg hΛ hr)
+
+/-- In the plane wave of momentum `χ`, the positions along a direction fixed and one reversed by
+the little group of `χ` are uncorrelated. -/
+lemma covariance_position_position_littleGroup {r' : G →+ ℝ}
+    (hr' : ∀ n, r' ((s : CellSymmetry G Unit).linear n) = r' n) :
+    UnitalPositiveLinearMap.covariance
+      (UnitalPositiveLinearMap.ofVec (norm_unitCharacterWave hne χ))
+      (positionObservable r') (positionObservable r) = 0 := by
+  refine covariance_ofVec_eq_zero_of_unitary (pointUnitary hΛ) _
+    (pointUnitary_unitCharacterWave hs hΛ) ?_ (pointUnitary_position_neg hΛ hr)
+  rw [pointUnitary_position hΛ r' 1 fun n => by rw [hr', one_mul], Complex.ofReal_one, one_smul]
+
+end LittleGroup
+
+omit [DecidableEq G] in
+/-- The inversion is in the little group of every momentum with `χ(-n) = χ(n)`. -/
+lemma inversion_mem_littleGroup (g : PeriodicGraph (Crystal.ofUnitCell G Unit))
+    {χ : BrillouinZone G} (hχ : ∀ n, χ (Multiplicative.ofAdd (-n)) = χ (Multiplicative.ofAdd n)) :
+    (⟨PeriodicGraph.inversion, g.inversion_mem_symmetries⟩ : g.symmetries) ∈ g.littleGroup χ := by
+  rw [PeriodicGraph.mem_littleGroup]
+  ext n
+  exact congrArg Subtype.val (hχ (Multiplicative.toAdd n))
+
+/-- **At a momentum with `χ(-n) = χ(n)`, such as the centre or a corner of the Brillouin zone,
+the bracket of the energy and the position along every direction has expectation zero** in the
+plane wave on every region with `-Λ = Λ`. -/
+lemma expectation_bracket_hopping_position_of_neg (g : PeriodicGraph (Crystal.ofUnitCell G Unit))
+    {χ : BrillouinZone G} (hχ : ∀ n, χ (Multiplicative.ofAdd (-n)) = χ (Multiplicative.ofAdd n))
+    (hΛ : ∀ n, -n ∈ Λ ↔ n ∈ Λ) (hne : Λ.Nonempty) (t : ℝ) (r : G →+ ℝ) :
+    UnitalPositiveLinearMap.expectation
+      (UnitalPositiveLinearMap.ofVec (norm_unitCharacterWave hne χ))
+      ⁅hoppingObservable (Λ := Λ) g t, positionObservable r⁆ = 0 :=
+  expectation_bracket_hopping_position_littleGroup (inversion_mem_littleGroup g hχ) hΛ hne t
+    fun n => map_neg r n
 
 end CondensedMatter.Crystal
