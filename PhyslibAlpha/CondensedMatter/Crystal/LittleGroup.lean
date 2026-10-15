@@ -29,6 +29,11 @@ wave `H` and the position along every direction reversed by `s` are uncorrelated
 of expectation zero. The bracket is `-1/2` times the group velocity in the limit of large cubes,
 so this is the vanishing of the components of the group velocity reversed by the little group.
 
+More generally, `U X_r U⋆ = X_{r ∘ A⁻¹}`, so the little group fixes the bracket as a function
+of the direction, `Ω_{H, X_{r ∘ A⁻¹}} = Ω_{H, X_r}`, and the covariances of the positions. The
+group velocity lies in the subspace fixed by the little co-group: on the square lattice at a
+momentum `(k, k)` the exchange of the axes fixes `χ`, so `Ω_{H, X_x} = Ω_{H, X_y}`.
+
 For instance, on the chain the inversion fixes the momentum `χ(n) = (-1)^n` at the edge of the
 Brillouin zone, so there `Ω_HX = 0`, while at a generic momentum `Ω_HX ≠ 0`.
 
@@ -46,12 +51,17 @@ Brillouin zone, so there `Ω_HX = 0`, while at a generic momentum `Ω_HX ≠ 0`.
   group are uncorrelated.
 - `expectation_bracket_hopping_position_of_neg` : at a momentum with `χ(-n) = χ(n)` the bracket
   vanishes along every direction.
+- `expectation_bracket_hopping_position_comp_littleGroup` : the little group fixes the bracket,
+  `Ω_{H, X_{r ∘ A⁻¹}} = Ω_{H, X_r}`, so it fixes the group velocity.
+- `covariance_position_comp_littleGroup` : the little group fixes the covariances of the
+  positions.
 
 ## iii. Table of contents
 
 - A. Unitary symmetries of vector states
 - B. The unitary of a linear symmetry of a region
 - C. The little group of a plane wave
+- D. The little group fixes the bracket and the covariances
 
 ## iv. References
 
@@ -138,21 +148,29 @@ lemma pointUnitary_symm_apply (ψ : EuclideanSpace ℂ Λ) (n : Λ) :
   rw [pointUnitary, LinearIsometryEquiv.piLpCongrLeft_symm]
   rfl
 
+/-- A matrix `M` is carried to `M'` by the conjugation by `U` when `M n m = M' (A n) (A m)`. -/
+lemma pointUnitary_matrix_eq (M M' : Matrix Λ Λ ℂ)
+    (hM : ∀ n m, M n m = M' (regionPerm hΛ n) (regionPerm hΛ m)) :
+    (pointUnitary hΛ).conjStarAlgEquiv (Matrix.toEuclideanCLM (𝕜 := ℂ) (n := Λ) M) =
+      Matrix.toEuclideanCLM (𝕜 := ℂ) (n := Λ) M' := by
+  refine ContinuousLinearMap.ext fun ψ => ?_
+  ext n
+  obtain ⟨n, rfl⟩ := (regionPerm hΛ).surjective n
+  rw [LinearIsometryEquiv.conjStarAlgEquiv_apply_apply, pointUnitary_apply,
+    Equiv.symm_apply_apply]
+  change Matrix.mulVec M _ n = Matrix.mulVec M' _ (regionPerm hΛ n)
+  simp only [Matrix.mulVec, dotProduct]
+  refine Fintype.sum_equiv (regionPerm hΛ) _ _ fun m => ?_
+  change M n m * (pointUnitary hΛ).symm ψ m = M' _ _ * ψ (regionPerm hΛ m)
+  rw [pointUnitary_symm_apply, hM n m]
+
 /-- A matrix with `M n m = c M (A n) (A m)` is carried to `c M` by the conjugation by `U`. -/
 lemma pointUnitary_matrix (M : Matrix Λ Λ ℂ) (c : ℂ)
     (hM : ∀ n m, M n m = c * M (regionPerm hΛ n) (regionPerm hΛ m)) :
     (pointUnitary hΛ).conjStarAlgEquiv (Matrix.toEuclideanCLM (𝕜 := ℂ) (n := Λ) M) =
       c • Matrix.toEuclideanCLM (𝕜 := ℂ) (n := Λ) M := by
-  refine ContinuousLinearMap.ext fun ψ => ?_
-  ext n
-  obtain ⟨n, rfl⟩ := (regionPerm hΛ).surjective n
-  rw [LinearIsometryEquiv.conjStarAlgEquiv_apply_apply, pointUnitary_apply,
-    Equiv.symm_apply_apply, _root_.smul_apply, PiLp.smul_apply]
-  change Matrix.mulVec M _ n = c • Matrix.mulVec M _ (regionPerm hΛ n)
-  simp only [Matrix.mulVec, dotProduct, smul_eq_mul, Finset.mul_sum]
-  refine Fintype.sum_equiv (regionPerm hΛ) _ _ fun m => ?_
-  change M n m * (pointUnitary hΛ).symm ψ m = c * (M _ _ * ψ (regionPerm hΛ m))
-  rw [pointUnitary_symm_apply, hM n m, mul_assoc]
+  rw [← map_smul]
+  exact pointUnitary_matrix_eq hΛ M (c • M) fun n m => by rw [Matrix.smul_apply, smul_eq_mul, hM]
 
 variable (g : PeriodicGraph (Crystal.ofUnitCell G Unit))
 
@@ -179,6 +197,19 @@ lemma pointUnitary_position (r : G →+ ℝ) (c : ℝ) (hr : ∀ n, r n = c * r 
     rfl
   · rw [Matrix.diagonal_apply_ne _ hnm,
       Matrix.diagonal_apply_ne _ ((regionPerm hΛ).injective.ne hnm), mul_zero]
+
+/-- `U X_r U⋆ = X_{r ∘ A⁻¹}`: the unitary moves the direction of a position. -/
+lemma pointUnitary_position_comp (r : G →+ ℝ) :
+    (pointUnitary hΛ).conjStarAlgEquiv (positionObservable (Λ := Λ) r) =
+      (positionObservable (Λ := Λ) (r.comp (A.symm : G →+ G)) : EuclideanSpace ℂ Λ →L[ℂ] _) := by
+  refine pointUnitary_matrix_eq hΛ (positionMatrix r) _ fun n m => ?_
+  unfold positionMatrix
+  by_cases hnm : n = m
+  · subst hnm
+    rw [Matrix.diagonal_apply_eq, Matrix.diagonal_apply_eq, regionPerm_apply]
+    simp
+  · rw [Matrix.diagonal_apply_ne _ hnm,
+      Matrix.diagonal_apply_ne _ ((regionPerm hΛ).injective.ne hnm)]
 
 end Region
 
@@ -306,5 +337,45 @@ lemma expectation_bracket_hopping_position_of_neg (g : PeriodicGraph (Crystal.of
       ⁅hoppingObservable (Λ := Λ) g t, positionObservable r⁆ = 0 :=
   expectation_bracket_hopping_position_littleGroup (inversion_mem_littleGroup g hχ) hΛ hne t
     fun n => map_neg r n
+
+/-! ## D. The little group fixes the bracket and the covariances -/
+
+section Invariance
+
+variable {g} {s : g.symmetries} {χ : BrillouinZone G} (hs : s ∈ g.littleGroup χ)
+  (hΛ : ∀ n, (s : CellSymmetry G Unit).linear n ∈ Λ ↔ n ∈ Λ) (hne : Λ.Nonempty)
+include hs hΛ
+
+/-- **The little group of `χ` fixes the energy–position bracket of the plane wave of momentum
+`χ`**: `Ω_{H, X_{r ∘ A⁻¹}} = Ω_{H, X_r}` for the linear part `A` of every element of the little
+group. In the limit of large cubes this bracket is `-1/2` times the group velocity, so the group
+velocity is fixed by the little co-group. -/
+lemma expectation_bracket_hopping_position_comp_littleGroup (t : ℝ) (r : G →+ ℝ) :
+    UnitalPositiveLinearMap.expectation
+      (UnitalPositiveLinearMap.ofVec (norm_unitCharacterWave hne χ))
+      ⁅hoppingObservable (Λ := Λ) g t,
+        positionObservable (r.comp ((s : CellSymmetry G Unit).linear.symm : G →+ G))⁆ =
+    UnitalPositiveLinearMap.expectation
+      (UnitalPositiveLinearMap.ofVec (norm_unitCharacterWave hne χ))
+      ⁅hoppingObservable (Λ := Λ) g t, positionObservable r⁆ :=
+  UnitalPositiveLinearMap.expectation_bracket_eq_of_symm _ (pointUnitary hΛ).conjStarAlgEquiv
+    (ofVec_conjStarAlgEquiv _ _ (pointUnitary_unitCharacterWave hs hΛ))
+    (pointUnitary_hopping hΛ g (g.adj_linear s.2) t) (pointUnitary_position_comp hΛ r)
+
+/-- **The little group of `χ` fixes the covariances of the positions in the plane wave of
+momentum `χ`**: `Σ_{X_{r ∘ A⁻¹}, X_{r' ∘ A⁻¹}} = Σ_{X_r, X_{r'}}`. -/
+lemma covariance_position_comp_littleGroup (r r' : G →+ ℝ) :
+    UnitalPositiveLinearMap.covariance
+      (UnitalPositiveLinearMap.ofVec (norm_unitCharacterWave hne χ))
+      (positionObservable (Λ := Λ) (r.comp ((s : CellSymmetry G Unit).linear.symm : G →+ G)))
+      (positionObservable (r'.comp ((s : CellSymmetry G Unit).linear.symm : G →+ G))) =
+    UnitalPositiveLinearMap.covariance
+      (UnitalPositiveLinearMap.ofVec (norm_unitCharacterWave hne χ))
+      (positionObservable r) (positionObservable r') :=
+  UnitalPositiveLinearMap.covariance_eq_of_symm _ (pointUnitary hΛ).conjStarAlgEquiv
+    (ofVec_conjStarAlgEquiv _ _ (pointUnitary_unitCharacterWave hs hΛ))
+    (pointUnitary_position_comp hΛ r) (pointUnitary_position_comp hΛ r')
+
+end Invariance
 
 end CondensedMatter.Crystal
