@@ -56,6 +56,7 @@ public import PhyslibAlpha.CondensedMatter.Crystal.ManyBody
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Basic
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Count
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Cubic
+public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.DiamondHoneycomb
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Hypercubic
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Orthorhombic
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Sublattices
