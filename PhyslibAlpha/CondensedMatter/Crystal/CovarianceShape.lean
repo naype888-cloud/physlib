@@ -6,6 +6,7 @@ Authors: Eduardo Nava-Hernandez
 module
 
 public import PhyslibAlpha.ProbabilisticTheory.StarAlgebra.CovarianceForm
+public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Monoclinic
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Rhombohedral
 
 /-!
@@ -25,6 +26,9 @@ and the commutator matrix `Ω` of Robertson's relation as `M = Σ + i Ω`, satis
 (`AlgState.conjTranspose_mul_covarianceMatrixForm_mul`). The point operations used here have
 integer matrices in Cartesian axes:
 
+- **triclinic**: only the inversion, which acts on `M` trivially, so `M` is free;
+- **monoclinic**: the reflection `b ↦ -b` separates the axis `b` from the plane of `a` and `c`,
+  and leaves a free `2 × 2` block in that plane;
 - **orthorhombic**: the reflections in the coordinate planes make `M` diagonal;
 - **rhombohedral**: with primitive vectors `(p, q, q)`, `(q, p, q)`, `(q, q, p)`, the point
   operations permute the three Cartesian axes, possibly with the inversion. Then
@@ -46,6 +50,7 @@ components, and a reflection kills it.
 
 - `AlgState.conjTranspose_pointMatrix_mul` : `Rᴴ M R = M` for a point operation given by its
   integer matrix.
+- `AlgState.covarianceMatrixForm_monoclinic` : the axis `b` decouples from `a` and `c`.
 - `AlgState.covarianceMatrixForm_orthorhombic` : `M` is diagonal.
 - `AlgState.covarianceMatrixForm_rhombohedral` : `M = α 1 + β (J - 1)`.
 - `AlgState.covarianceMatrixForm_cubic` : `M = α 1`.
@@ -108,6 +113,23 @@ lemma entry_of_realises {a : Fin 3 → A} {v : Fin 3 → Fin 3 → ℤ} (h : ω.
   rw [← e, Finset.sum_comm]
 
 /-! ## B. Orthorhombic, rhombohedral and cubic shapes -/
+
+/-- **Monoclinic symmetry decouples the axis `b`**: the reflection `b ↦ -b` makes the
+covariances between `b` and the plane of `a` and `c` vanish, both `Σ` and `Ω`. The block in the
+plane of `a` and `c` stays free. -/
+lemma covarianceMatrixForm_monoclinic {a : Fin 3 → A}
+    (h : ∀ v ∈ monoclinicPointTriples, ω.Realises a v) {i : Fin 3} (hi : i ≠ 1) :
+    ω.covarianceForm (a i) (a 1) = 0 ∧ ω.covarianceForm (a 1) (a i) = 0 := by
+  have hm := entry_of_realises (h ![![1, 0, 0], ![0, -1, 0], ![0, 0, 1]] (by decide))
+  obtain rfl | rfl : i = 0 ∨ i = 2 := by fin_cases i <;> simp_all
+  · have e1 := hm 0 1
+    have e2 := hm 1 0
+    simp [Fin.sum_univ_three] at e1 e2
+    exact ⟨by linear_combination -e1 / 2, by linear_combination -e2 / 2⟩
+  · have e1 := hm 2 1
+    have e2 := hm 1 2
+    simp [Fin.sum_univ_three] at e1 e2
+    exact ⟨by linear_combination -e1 / 2, by linear_combination -e2 / 2⟩
 
 /-- **Orthorhombic symmetry makes the covariance matrix diagonal.** -/
 lemma covarianceMatrixForm_orthorhombic {a : Fin 3 → A}
