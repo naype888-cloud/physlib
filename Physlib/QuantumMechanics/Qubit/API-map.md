@@ -48,11 +48,11 @@ the geometric phase of Pancharatnam {2} and Berry {3}.
 
 The Bloch vector of a state of a qubit is the triple of expectation values of the Pauli gates, and
 it is a bijection from states onto the closed unit ball of three-dimensional Euclidean space.
-[TODO] It restricts to a bijection from pure states up to a global phase onto the Bloch sphere,
+[11] It restricts to a bijection from pure states up to a global phase onto the Bloch sphere,
 so that the angular parameterization presents the pure state with the given polar and azimuthal
 angles. [TODO] Every state of a qubit is one half of the identity plus a real combination of the
 Pauli gates, and the identity together with the three Pauli gates is a basis of the self-adjoint two
-by two complex matrices. [TODO]
+by two complex matrices. [11]
 
 ### Measurement and distinguishability
 
@@ -98,6 +98,9 @@ the finite dimensional Hilbert space of a two-element type. [TODO]
 10. QuantumInfo/States/Pure/BargmannInvariant.lean — `bargmannInvariantThree`,
    `bargmannPhaseThree`, `bargmannPhaseThree_cyclic`, `bargmannPhaseThree_reverse`,
    `norm_bargmannInvariantThree_le_one`
+11. QuantumInfo/States/Mixed/BlochBall.lean — `MState.blochVector`,
+   `MState.blochVector_mem_closedBall`, `MState.ofBlochVector`, `MState.blochEquiv`, `Qubit.pauli`,
+   `Qubit.eq_pauli_decomposition`, `Qubit.pauliBasis`, `MState.M_eq_blochMat`
 
 ## References
 

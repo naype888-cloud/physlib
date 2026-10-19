@@ -78,6 +78,7 @@ public import QuantumInfo.ResourceTheory.HypothesisTesting
 public import QuantumInfo.ResourceTheory.SteinsLemma
 public import QuantumInfo.States.Ensemble
 public import QuantumInfo.States.Entanglement
+public import QuantumInfo.States.Mixed.BlochBall
 public import QuantumInfo.States.Mixed.Fidelity
 public import QuantumInfo.States.Mixed.MState
 public import QuantumInfo.States.Mixed.TraceDistance
