@@ -804,6 +804,7 @@ public import PhyslibAlpha.Relativity.Fermions.Dirac.MinimalDimension
 public import PhyslibAlpha.Relativity.Fermions.Weyl.BoostWeight
 public import PhyslibAlpha.Relativity.Fermions.Weyl.Metric
 public import PhyslibAlpha.Relativity.General.Schwarzschild.IncompressibleSphere
+public import PhyslibAlpha.Relativity.General.Unruh
 public import PhyslibAlpha.Relativity.IsLorentzDeriv
 public import PhyslibAlpha.Relativity.LightConeDeriv
 public import PhyslibAlpha.Relativity.LorentzGroup.Basic
