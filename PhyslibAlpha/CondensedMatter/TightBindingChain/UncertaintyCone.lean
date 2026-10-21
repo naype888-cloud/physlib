@@ -5,7 +5,7 @@ Authors: Eduardo Nava-Hernandez
 -/
 module
 
-public import PhyslibAlpha.CondensedMatter.TightBindingChain.Cube
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.Cube.Basic
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.UncertaintyCone
 /-!
 
@@ -20,7 +20,7 @@ equality, and strictly inside the future cone from four sites on.
 
 On the cube `Nx × Ny × Nz` each axis carries its own Lorentz vector, whose Minkowski square is
 the centered Gram defect of that axis: it vanishes iff the axis has `2` or `3` sites, and the
-three are timelike together from `4 × 4 × 4` on (`nava_robertson_schrodinger_cube`).
+three are timelike together from `4 × 4 × 4` on (`robertson_schrodinger_cube`).
 
 ## ii. Key results
 
@@ -66,7 +66,7 @@ lemma vectorCoeff_gramMatrix_maxCurrentState :
   rw [(vectorCoeff_gramMatrix _ _ _).1, covariance_maxCurrentState]
 
 /-- The Gram four-vector of the maximal current state is null exactly for `N = 2` and `N = 3`. -/
-theorem pauliRadius_gramMatrix_maxCurrentState_eq_iff (ht : T.t ≠ 0) (hN : 2 ≤ T.N) :
+lemma pauliRadius_gramMatrix_maxCurrentState_eq_iff (ht : T.t ≠ 0) (hN : 2 ≤ T.N) :
     pauliRadius (gramMatrix T.maxCurrentVectorState T.openHamiltonianObservable
         T.positionObservable) =
       scalarCoeff (gramMatrix T.maxCurrentVectorState T.openHamiltonianObservable
@@ -74,7 +74,7 @@ theorem pauliRadius_gramMatrix_maxCurrentState_eq_iff (ht : T.t ≠ 0) (hN : 2 �
   rw [pauliRadius_gramMatrix_eq_iff, T.centeredGramDefect_maxCurrentState_eq_zero_iff ht hN]
 
 /-- From four sites on, the Gram four-vector of the maximal current state is timelike. -/
-theorem pauliRadius_gramMatrix_maxCurrentState_lt (ht : T.t ≠ 0) (hN : 4 ≤ T.N) :
+lemma pauliRadius_gramMatrix_maxCurrentState_lt (ht : T.t ≠ 0) (hN : 4 ≤ T.N) :
     pauliRadius (gramMatrix T.maxCurrentVectorState T.openHamiltonianObservable
         T.positionObservable) <
       scalarCoeff (gramMatrix T.maxCurrentVectorState T.openHamiltonianObservable
@@ -127,13 +127,13 @@ lemma minkowski_axisVectorZ_eq_zero_iff (ht : Tz.t ≠ 0) (hN : 2 ≤ Tz.N) :
 /-- **The Minkowski metric of the cube.** From `4 × 4 × 4` on, the Lorentz vectors of the three
 axes of the maximal current state are timelike: each Minkowski square is the positive centered
 Gram defect of its axis. -/
-theorem minkowski_axisVector_cube_pos (hx : Tx.t ≠ 0) (hy : Ty.t ≠ 0) (hz : Tz.t ≠ 0)
+lemma minkowski_axisVector_cube_pos (hx : Tx.t ≠ 0) (hy : Ty.t ≠ 0) (hz : Tz.t ≠ 0)
     (hNx : 4 ≤ Tx.N) (hNy : 4 ≤ Ty.N) (hNz : 4 ≤ Tz.N) :
     0 < ⟪Tx.axisVectorX Ty Tz, Tx.axisVectorX Ty Tz⟫ₘ ∧
       0 < ⟪Tx.axisVectorY Ty Tz, Tx.axisVectorY Ty Tz⟫ₘ ∧
       0 < ⟪Tx.axisVectorZ Ty Tz, Tx.axisVectorZ Ty Tz⟫ₘ := by
   simp only [axisVectorX, axisVectorY, axisVectorZ, minkowski_gramVector]
-  exact Tx.nava_robertson_schrodinger_cube Ty Tz hx hy hz hNx hNy hNz
+  exact Tx.robertson_schrodinger_cube Ty Tz hx hy hz hNx hNy hNz
 
 end TightBindingChain
 end CondensedMatter
