@@ -6,7 +6,7 @@ Authors: Eduardo Nava-Hernandez
 module
 
 public import PhyslibAlpha.ProbabilisticTheory.StarAlgebra.GNS
-public import Physlib.ProbabilisticTheory.State.Basic
+public import PhyslibAlpha.ProbabilisticTheory.State.Basic
 public import Mathlib.Algebra.Order.Star.Basic
 
 /-!
@@ -68,15 +68,13 @@ lemma nonneg_of_mem_closure (ω : AlgState A) {p : A}
   | add x y _ _ hx hy => rw [ω.map_add]; exact add_nonneg hx hy
 
 /-- On a star ordered algebra, an `AlgState` is a state `𝓢[ℂ, A]` for the order of `A`. -/
-def toState (ω : AlgState A) : 𝓢[ℂ, A] where
-  toLinearMap := ω.toLinearMap
-  monotone' x y h := by
-    obtain ⟨p, hp, rfl⟩ := (StarOrderedRing.le_iff x y).mp h
-    have := ω.nonneg_of_mem_closure hp
-    change ω x ≤ ω (x + p)
-    rw [ω.map_add]
-    exact le_add_of_nonneg_right this
-  map_one' := ω.map_one
+def toState (ω : AlgState A) : 𝓢[ℂ, A] :=
+  UnitalPositiveLinearMap.ofLinearMap ω.toLinearMap
+    (fun x hx => by
+      obtain ⟨p, hp, rfl⟩ := (StarOrderedRing.le_iff 0 x).mp hx
+      rw [zero_add]
+      exact ω.nonneg_of_mem_closure hp)
+    ω.map_one
 
 @[simp]
 lemma toState_apply (ω : AlgState A) (a : A) : ω.toState a = ω a := rfl
@@ -102,7 +100,7 @@ lemma star_apply_of_isSelfAdjoint (φ : 𝓢[ℂ, A]) {x : A} (hx : IsSelfAdjoin
     module
   have hp : ∀ s : A, star (φ (star s * s)) = φ (star s * s) := fun s => by
     have : 0 ≤ φ (star s * s) := by
-      simpa using φ.monotone (star_mul_self_nonneg s)
+      simpa using map_nonneg φ (star_mul_self_nonneg s)
     rw [Complex.star_def, Complex.conj_eq_iff_im]
     exact (Complex.nonneg_iff.mp this).2.symm
   have h := congrArg φ h4
@@ -154,7 +152,7 @@ def ofState (φ : 𝓢[ℂ, A]) : AlgState A where
   toLinearMap := φ.toLinearMap
   map_one' := φ.map_one'
   map_star' a := UnitalPositiveLinearMap.map_star_eq φ a
-  nonneg' a := by simpa using φ.monotone (star_mul_self_nonneg a)
+  nonneg' a := map_nonneg φ (star_mul_self_nonneg a)
 
 @[simp]
 lemma ofState_apply (φ : 𝓢[ℂ, A]) (a : A) : ofState φ a = φ a := rfl
