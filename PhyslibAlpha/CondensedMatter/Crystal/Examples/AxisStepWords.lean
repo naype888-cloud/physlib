@@ -22,6 +22,9 @@ a body diagonal. Here the converse: every such sum is a nearest neighbour.
 A step along an axis is forward or backward, so there are two steps per axis. Steps along
 different axes commute, so the two orders of a pair of steps reach the same site. Each face
 diagonal is reached by `2` words of two steps and each body diagonal by `6` words of three steps.
+The words of two steps along the same axis give the rest: `6` words return to the starting site
+and each double step `±2eᵢ` is reached by `1` word, so the `36` words of two steps split as
+`6 + 12 · 2 + 6 · 1`.
 
 ## ii. Key results
 
@@ -31,12 +34,15 @@ diagonal is reached by `2` words of two steps and each body diagonal by `6` word
   steps along the three axes.
 - `card_twoStepWords_fiber`, `card_threeStepWords_fiber` : each neighbour is reached by exactly
   `2`, respectively `6`, words.
+- `card_twoStepWords_return`, `card_doubleStep_fiber` : the remaining words of two steps: `6`
+  return to the start and each double step is reached by `1` word.
 
 ## iii. Table of contents
 
 - A. Axis steps and their words
 - B. Coordinates of the box
 - C. The neighbours as words
+- D. The words along one axis
 
 ## iv. References
 
@@ -126,6 +132,31 @@ lemma card_twoStepWords_fiber :
 lemma card_threeStepWords_fiber :
     ∀ v ∈ threeStepWords.image threeStepSum,
       (threeStepWords.filter (threeStepSum · = v)).card = 6 := by
+  decide +kernel
+
+/-! ## D. The words along one axis -/
+
+/-- All words of two steps, along the same axis or along different ones. -/
+def allTwoStepWords : Finset ((Fin 3 × Bool) × (Fin 3 × Bool)) := Finset.univ
+
+/-- There are `36` words of two steps in all. -/
+lemma card_allTwoStepWords : allTwoStepWords.card = 36 := by
+  decide +kernel
+
+/-- Six words of two steps return to the starting site: a step and then its opposite. -/
+lemma card_twoStepWords_return :
+    (allTwoStepWords.filter (twoStepSum · = 0)).card = 6 := by
+  decide +kernel
+
+/-- Each double step along an axis is reached by exactly one word of two steps. -/
+lemma card_doubleStep_fiber :
+    ∀ (i : Fin 3) (s : Bool),
+      (allTwoStepWords.filter (twoStepSum · = axisStep i s + axisStep i s)).card = 1 := by
+  decide +kernel
+
+/-- The words of two steps along different axes are `24 = 12 · 2`, so together with the `6`
+returns and the `6` double steps they are all `36`. -/
+lemma card_twoStepWords : twoStepWords.card = 6 * 2 * 2 := by
   decide +kernel
 
 end CondensedMatter.Crystal
