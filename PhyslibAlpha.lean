@@ -606,6 +606,7 @@ public import PhyslibAlpha.ProbabilisticTheory.OrderUnit.Normed
 public import PhyslibAlpha.ProbabilisticTheory.OrderUnit.PositiveDual
 public import PhyslibAlpha.ProbabilisticTheory.QuasiLocal.AlgebraNet
 public import PhyslibAlpha.ProbabilisticTheory.QuasiLocal.Limit
+public import PhyslibAlpha.ProbabilisticTheory.QuasiLocal.Robertson
 public import PhyslibAlpha.ProbabilisticTheory.QuasiLocal.State
 public import PhyslibAlpha.ProbabilisticTheory.Representation.AbelianSpectral
 public import PhyslibAlpha.ProbabilisticTheory.Representation.Bands
