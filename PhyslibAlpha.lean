@@ -151,6 +151,7 @@ public import PhyslibAlpha.CondensedMatter.Crystal.Symmetry
 public import PhyslibAlpha.CondensedMatter.IsingModel.Basic
 public import PhyslibAlpha.CondensedMatter.IsingModel.Examples
 public import PhyslibAlpha.CondensedMatter.LatticeModels.Hopping
+public import PhyslibAlpha.CondensedMatter.LatticeModels.SpeedLimit
 public import PhyslibAlpha.CondensedMatter.LatticeModels.Variational
 public import PhyslibAlpha.CondensedMatter.QuasiLocal.Gibbs
 public import PhyslibAlpha.CondensedMatter.QuasiLocal.GibbsSymmetry
