@@ -150,6 +150,7 @@ public import PhyslibAlpha.CondensedMatter.Crystal.Reciprocal
 public import PhyslibAlpha.CondensedMatter.Crystal.Symmetry
 public import PhyslibAlpha.CondensedMatter.IsingModel.Basic
 public import PhyslibAlpha.CondensedMatter.IsingModel.Examples
+public import PhyslibAlpha.CondensedMatter.LatticeModels.BoxGraph
 public import PhyslibAlpha.CondensedMatter.LatticeModels.Hopping
 public import PhyslibAlpha.CondensedMatter.LatticeModels.Region
 public import PhyslibAlpha.CondensedMatter.LatticeModels.SpeedLimit
