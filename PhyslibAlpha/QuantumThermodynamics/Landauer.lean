@@ -67,7 +67,7 @@ def initialJoint (P : LandauerProcess S R) : MState (S × R) :=
 
 /-- The joint state after the unitary evolution. -/
 def finalJoint (P : LandauerProcess S R) : MState (S × R) :=
-  P.initialJoint.U_conj P.evolution
+  P.initialJoint.uConj P.evolution
 
 /-- The final system marginal obtained by tracing out the reservoir. -/
 def finalSystem (P : LandauerProcess S R) : MState S :=
