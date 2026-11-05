@@ -164,6 +164,7 @@ public import PhyslibAlpha.QuantumThermodynamics.Landauer
 public import PhyslibAlpha.QuantumThermodynamics.LandauerBit
 public import PhyslibAlpha.QuantumThermodynamics.ThermalState
 public import PhyslibAlpha.QuantumThermodynamics.ThermalKMS
+public import PhyslibAlpha.QuantumThermodynamics.ThermalHeat
 public import PhyslibAlpha.QuantumThermodynamics.ThermalUncertainty
 public import PhyslibAlpha.QuantumThermodynamics.UnruhKMS
 public import PhyslibAlpha.QuantumThermodynamics.ThermalStateOrder
