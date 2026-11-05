@@ -159,9 +159,11 @@ public import PhyslibAlpha.SpaceAndTime.Space.Surfaces.SolidSphere
 public import PhyslibAlpha.SpaceAndTime.Space.Surfaces.SphericalShell
 public import PhyslibAlpha.QuantumMechanics.QuantumHarmonicOscillator
 public import PhyslibAlpha.QuantumMechanics.StinespringDilation
+public import PhyslibAlpha.QuantumThermodynamics.Carnot
 public import PhyslibAlpha.QuantumThermodynamics.Landauer
 public import PhyslibAlpha.QuantumThermodynamics.LandauerBit
 public import PhyslibAlpha.QuantumThermodynamics.ThermalState
+public import PhyslibAlpha.QuantumThermodynamics.ThermalUncertainty
 public import PhyslibAlpha.Mathematics.PartialDerivativeTest
 public import PhyslibAlpha.ClassicalMechanics.CoupledSpringPotential
 public import PhyslibAlpha.ClassicalMechanics.LiouvilleIntegrable.Basic
