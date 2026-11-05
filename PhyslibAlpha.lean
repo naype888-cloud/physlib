@@ -225,7 +225,9 @@ public import PhyslibAlpha.CondensedMatter.QuasiLocal.LimitState
 public import PhyslibAlpha.CondensedMatter.QuasiLocal.Local
 public import PhyslibAlpha.CondensedMatter.QuasiLocal.Symmetry
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Cube.AxisCommutation
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.Cube.AlgState
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Cube.Basic
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.Cube.DefectBand
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Cube.MandelstamTamm
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Cube.VolumetricQuantum
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.Current.Basic
@@ -536,13 +538,13 @@ public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.GNSAutomorphism
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.GNSSpectral
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.JordanDecomposition
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.MatrixComposite
-public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.OrderUnit
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.Projection
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.QuantumChannel
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.SharpEffect
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.SpectralMeasure
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.Stinespring.Dilation
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.Stinespring.Kernel
+public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.StateOrderUncertainty
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.Uncertainty
 public import PhyslibAlpha.ProbabilisticTheory.Channel.Basic
 public import PhyslibAlpha.ProbabilisticTheory.Channel.MeasureAndPrepare
@@ -704,6 +706,7 @@ public import PhyslibAlpha.ProbabilisticTheory.OrderUnit.Normed
 public import PhyslibAlpha.ProbabilisticTheory.OrderUnit.PositiveDual
 public import PhyslibAlpha.ProbabilisticTheory.QuasiLocal.AlgebraNet
 public import PhyslibAlpha.ProbabilisticTheory.QuasiLocal.Limit
+public import PhyslibAlpha.ProbabilisticTheory.QuasiLocal.Robertson
 public import PhyslibAlpha.ProbabilisticTheory.QuasiLocal.State
 public import PhyslibAlpha.ProbabilisticTheory.Representation.AbelianSpectral
 public import PhyslibAlpha.ProbabilisticTheory.Representation.Bands
@@ -732,6 +735,7 @@ public import PhyslibAlpha.ProbabilisticTheory.StarAlgebra.Observable
 public import PhyslibAlpha.ProbabilisticTheory.StarAlgebra.Restrict
 public import PhyslibAlpha.ProbabilisticTheory.StarAlgebra.SelfAdjoint
 public import PhyslibAlpha.ProbabilisticTheory.StarAlgebra.StateUncertainty
+public import PhyslibAlpha.ProbabilisticTheory.StarAlgebra.StateOrder
 public import PhyslibAlpha.ProbabilisticTheory.StarAlgebra.Statistics
 public import PhyslibAlpha.ProbabilisticTheory.StarAlgebra.Traciality
 public import PhyslibAlpha.ProbabilisticTheory.State.Barycenter
