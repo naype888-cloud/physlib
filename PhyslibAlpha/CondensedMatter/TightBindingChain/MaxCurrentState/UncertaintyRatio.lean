@@ -5,6 +5,7 @@ Authors: Eduardo Nava-Hernandez
 -/
 module
 
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.ParticleHole
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.Saturation
 /-!
 
@@ -51,28 +52,11 @@ variable (T : TightBindingChain)
 
 -/
 
-/-- The energy and position fluctuations of the maximal current state are uncorrelated. -/
+/-- The energy and position fluctuations of the maximal current state are uncorrelated, by its
+particle–hole symmetry. -/
 lemma covariance_maxCurrentState :
-    covariance T.maxCurrentVectorState T.openHamiltonianObservable T.positionObservable = 0 := by
-  rw [covariance_eq_re_apply_centered_mul, apply_centered_mul_centered_ofVec,
-    ← localizedState.sum_inner_mul_inner, Complex.re_sum]
-  refine Finset.sum_eq_zero fun m _ => ?_
-  rw [← inner_conj_symm, inner_energyFluctuation_maxCurrentState,
-    inner_positionFluctuation_maxCurrentState, inner_maxCurrentState]
-  simp only [map_neg, map_mul, Complex.conj_ofReal, map_pow, Complex.conj_I, map_ofNat]
-  have hI : (-Complex.I) ^ ((m : ℕ) + 1) * Complex.I ^ (m : ℕ) = -Complex.I := by
-    rw [pow_succ, mul_right_comm, ← mul_pow, neg_mul, Complex.I_mul_I, neg_neg, one_pow, one_mul]
-  generalize Real.sin (Real.pi / (T.N + 1)) = S
-  generalize Real.sin (((m : ℕ) + 1) * (Real.pi / (T.N + 1))) = s
-  generalize Real.cos (((m : ℕ) + 1) * (Real.pi / (T.N + 1))) = k
-  generalize √(2 / (T.N + 1)) = c
-  rw [show -((c : ℂ) * (2 * T.t * S * (-Complex.I) ^ ((m : ℕ) + 1) * k)) *
-      ((T.a * ((m : ℕ) - (T.N - 1) / 2) : ℝ) * (c * (Complex.I ^ (m : ℕ) * s))) =
-      Complex.I * ((c * (2 * T.t * S * k) * (T.a * ((m : ℕ) - (T.N - 1) / 2) * (c * s)) : ℝ)) by
-    push_cast
-    linear_combination (-(c : ℂ) * (2 * T.t * S * k) * (T.a * ((m : ℕ) - (T.N - 1) / 2)) *
-      (c * s)) * hI,
-    Complex.I_mul_re, Complex.ofReal_im, neg_zero]
+    covariance T.maxCurrentVectorState T.openHamiltonianObservable T.positionObservable = 0 :=
+  T.covariance_eq_zero_of_particleHole T.norm_maxCurrentState T.particleHole_maxCurrentState
 
 /-- The uncertainty identity of the maximal current state:
 `Var H · Var X = (a t cos (π / (N + 1)))² + defect`. -/

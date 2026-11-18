@@ -214,8 +214,11 @@ public import PhyslibAlpha.CondensedMatter.Crystal.Examples.ThreeDimensional
 public import PhyslibAlpha.CondensedMatter.Crystal.Folner
 public import PhyslibAlpha.CondensedMatter.Crystal.Geometry
 public import PhyslibAlpha.CondensedMatter.Crystal.Graph
+public import PhyslibAlpha.CondensedMatter.Crystal.GroupVelocity
 public import PhyslibAlpha.CondensedMatter.Crystal.InvariantState
 public import PhyslibAlpha.CondensedMatter.Crystal.InvariantStateUncertainty
+public import PhyslibAlpha.CondensedMatter.Crystal.Inversion
+public import PhyslibAlpha.CondensedMatter.Crystal.LittleGroup
 public import PhyslibAlpha.CondensedMatter.Crystal.ManyBody
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Basic
 public import PhyslibAlpha.CondensedMatter.Crystal.PointGroup.Count
@@ -253,6 +256,7 @@ public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.Flu
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.LongChainLimit
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.LongChainMonotonicity
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.MandelstamTamm
+public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.ParticleHole
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.Saturation
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.UncertaintyRatio
 public import PhyslibAlpha.CondensedMatter.TightBindingChain.MaxCurrentState.Variances
@@ -563,6 +567,7 @@ public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.SharpEffect
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.SpectralMeasure
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.Stinespring.Dilation
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.Stinespring.Kernel
+public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.SymmetricState
 public import PhyslibAlpha.ProbabilisticTheory.CStarAlgebra.Uncertainty
 public import PhyslibAlpha.ProbabilisticTheory.Channel.Basic
 public import PhyslibAlpha.ProbabilisticTheory.Channel.MeasureAndPrepare
@@ -602,9 +607,11 @@ public import PhyslibAlpha.ProbabilisticTheory.Examples.NormCone
 public import PhyslibAlpha.ProbabilisticTheory.Examples.Qubit
 public import PhyslibAlpha.ProbabilisticTheory.Examples.Square
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.Dynamics.Automorphism
+public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.Dynamics.Ehrenfest
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.Dynamics.Hamiltonian
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.JointSpectral.Basic
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.OrthonormalMeasurement
+public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.State.Antiunitary
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.State.Density
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.State.DensityUncertainty
 public import PhyslibAlpha.ProbabilisticTheory.HilbertSpace.State.Vector
