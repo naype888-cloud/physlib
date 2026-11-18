@@ -74,7 +74,7 @@ Brillouin zone, so there `Ω_HX = 0`, while at a generic momentum `Ω_HX ≠ 0`.
 
 namespace CondensedMatter.Crystal
 
-open ProbabilisticTheory
+open PhyslibAlpha.ProbabilisticTheory
 open scoped ComplexOrder InnerProductSpace selfAdjoint
 
 /-! ## A. Unitary symmetries of vector states -/

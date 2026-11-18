@@ -59,7 +59,7 @@ plane wave `n ↦ exp (i k n)` is fixed by `f`, since both operations reverse th
 
 namespace CondensedMatter.Crystal
 
-open ProbabilisticTheory
+open PhyslibAlpha.ProbabilisticTheory
 open scoped ComplexOrder InnerProductSpace selfAdjoint
 
 variable {G : Type*} [AddCommGroup G]

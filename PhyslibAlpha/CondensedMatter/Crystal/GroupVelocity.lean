@@ -63,7 +63,7 @@ parameter of that evolution.
 
 namespace CondensedMatter.Crystal
 
-open ProbabilisticTheory Filter Topology
+open PhyslibAlpha.ProbabilisticTheory Filter Topology
 open scoped ComplexOrder InnerProductSpace selfAdjoint
 
 attribute [local instance] PeriodicGraph.decidableAdj

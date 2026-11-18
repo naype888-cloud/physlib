@@ -47,7 +47,7 @@ By `covariance_ofVec_eq_zero_of_antiunitary`, the energy and position fluctuatio
 
 namespace CondensedMatter
 namespace TightBindingChain
-open InnerProductSpace QuantumMechanics.FiniteHilbertSpace ProbabilisticTheory
+open InnerProductSpace QuantumMechanics.FiniteHilbertSpace PhyslibAlpha.ProbabilisticTheory
 open UnitalPositiveLinearMap
 open scoped selfAdjoint
 variable (T : TightBindingChain)

@@ -57,7 +57,7 @@ time reversal removes `Ω` within each parity and `Σ` between them.
 
 @[expose] public section
 
-namespace ProbabilisticTheory
+namespace PhyslibAlpha.ProbabilisticTheory
 
 open scoped ComplexOrder selfAdjoint
 
@@ -209,4 +209,4 @@ end Reverse
 
 end UnitalPositiveLinearMap
 
-end ProbabilisticTheory
+end PhyslibAlpha.ProbabilisticTheory

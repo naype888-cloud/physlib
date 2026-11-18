@@ -51,7 +51,7 @@ bracket of expectation zero.
 
 @[expose] public section
 
-namespace ProbabilisticTheory
+namespace PhyslibAlpha.ProbabilisticTheory
 
 open scoped ComplexOrder InnerProductSpace selfAdjoint
 open UnitalPositiveLinearMap
@@ -140,4 +140,4 @@ lemma UnitalPositiveLinearMap.expectation_bracket_ofVec_eq_zero_of_antiunitary
   · rw [antiunitaryConj_apply, a.property.star_eq, ha]
   · rw [antiunitaryConj_apply, b.property.star_eq, hb]
 
-end ProbabilisticTheory
+end PhyslibAlpha.ProbabilisticTheory

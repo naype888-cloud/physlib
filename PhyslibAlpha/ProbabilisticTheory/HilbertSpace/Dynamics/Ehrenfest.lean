@@ -53,7 +53,7 @@ variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteS
 
 namespace UnitaryOneParameterGroup
 
-open ProbabilisticTheory
+open PhyslibAlpha.ProbabilisticTheory
 open scoped InnerProductSpace selfAdjoint
 
 /-! ## A. Expectations along the flow -/
